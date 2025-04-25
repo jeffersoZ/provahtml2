@@ -1,0 +1,92 @@
+:root {
+    --cor-primaria: #4361ee;
+    --cor-texto: #2b2d42;
+    --cor-fundo: #f8f9fa;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container-app {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.tela-principal, .tela-edicao {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    height: 80vh;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.btn-adicionar {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--cor-primaria);
+    cursor: pointer;
+}
+
+.lista-anotacoes {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+
+.lista-itens {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-itens li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.tela-edicao {
+    display: none;
+    flex-direction: column;
+}
+
+.cabecalho-edicao {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.grupo-nome {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
+
+.editor-texto {
+    flex: 1;
+}
+
+#texto-anotacao {
+    height: 100%;
+    resize: none;
+}
+
+#btn-salvar-titulo {
+    display: none;
+}

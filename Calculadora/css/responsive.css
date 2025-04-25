@@ -1,0 +1,11 @@
+@media (max-width: 600px) {
+    .grade-botoes button {
+      width: 45%;
+      margin-bottom: 10px;
+    }
+  
+    .btn-success {
+      font-size: 1.5rem;
+    }
+  }
+  

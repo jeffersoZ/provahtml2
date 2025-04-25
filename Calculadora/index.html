@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Calculadora</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <div class="container-calculadora">
+        <header class="cabecalho">
+            <h2 class="titulo">Minha Calculadora</h2>
+        </header>
+        
+        <main class="calculadora">
+            <div class="visor">
+                <input type="text" id="visor-input" class="form-control" disabled>
+            </div>
+            
+            <div class="teclado">
+                <div class="linha">
+                    <button class="btn btn-operador" onclick="inserirValor('7')">7</button>
+                    <button class="btn btn-operador" onclick="inserirValor('8')">8</button>
+                    <button class="btn btn-operador" onclick="inserirValor('9')">9</button>
+                    <button class="btn btn-acao" onclick="inserirValor('/')">÷</button>
+                </div>
+                <div class="linha">
+                    <button class="btn btn-operador" onclick="inserirValor('4')">4</button>
+                    <button class="btn btn-operador" onclick="inserirValor('5')">5</button>
+                    <button class="btn btn-operador" onclick="inserirValor('6')">6</button>
+                    <button class="btn btn-acao" onclick="inserirValor('*')">×</button>
+                </div>
+                <div class="linha">
+                    <button class="btn btn-operador" onclick="inserirValor('1')">1</button>
+                    <button class="btn btn-operador" onclick="inserirValor('2')">2</button>
+                    <button class="btn btn-operador" onclick="inserirValor('3')">3</button>
+                    <button class="btn btn-acao" onclick="inserirValor('-')">-</button>
+                </div>
+                <div class="linha">
+                    <button class="btn btn-operador" onclick="inserirValor('0')">0</button>
+                    <button class="btn btn-operador" onclick="inserirValor('.')">.</button>
+                    <button class="btn btn-limpar" onclick="limparVisor()">C</button>
+                    <button class="btn btn-acao" onclick="inserirValor('+')">+</button>
+                </div>
+                <div class="linha">
+                    <button class="btn btn-igual" onclick="calcularResultado()">=</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
