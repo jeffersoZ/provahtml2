@@ -35,6 +35,7 @@ class Cronometro {
         if (!this.rodando) {
             this.intervalo = setInterval(() => {
                 this.segundos++;
+                //verifica se ja passou 60 que vira 1 minuto ou 60 minutos que vira 1 hora
                 if (this.segundos === 60) {
                     this.segundos = 0;
                     this.minutos++;
@@ -77,12 +78,12 @@ class Cronometro {
     registrarTempo() {
         // Verifica se o cronômetro está rodando
         if (!this.rodando && this.segundos === 0 && this.minutos === 0 && this.horas === 0) {
-            return; // Não registra se estiver zerado e parado
+            return; 
         }
         
         const tempoFormatado = `${this.formatarTempo(this.horas)}:${this.formatarTempo(this.minutos)}:${this.formatarTempo(this.segundos)}`;
-        const itemRegistro = document.createElement('li');
-        itemRegistro.textContent = tempoFormatado;
+        const itemRegistro = document.createElement('li'); // Cria um novo elemento de lista
+        itemRegistro.textContent = tempoFormatado; 
         this.listaRegistro.prepend(itemRegistro);
     }
 
@@ -90,6 +91,7 @@ class Cronometro {
         this.listaRegistro.innerHTML = '';
     }
 
+    
     formatarTempo(tempo) {
         return tempo < 10 ? `0${tempo}` : tempo;
     }
