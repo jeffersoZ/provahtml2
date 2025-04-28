@@ -4,18 +4,18 @@ function inserirValor(valor) {
     const valorAtual = visor.value;
     const ultimoCaractere = valorAtual.slice(-1);
     
-    // Evitar múltiplos operadores seguidos
+    //trata caso de dois operadores seguidos
     if (['+', '-', '*', '/', '.'].includes(ultimoCaractere)) {
         if (['+', '-', '*', '/', '.'].includes(valor)) {
             return;
         }
     }
     
-    // Não permitir começar com operadores (exceto subtração para números negativos)
+    //trata começar com operadores
     if (valorAtual === '' && ['*', '/', '+', '.'].includes(valor)) {
         return;
     }
-    
+
     visor.value += valor;
 }
 
@@ -35,8 +35,8 @@ function calcularResultado() {
         // Calcular resultado
         const resultado = eval(expressao);
         visor.value = resultado;
+    //se der erro exibe a mensagem de erro
     } catch (error) {
-        // Em caso de erro (como sintaxe inválida)
         visor.value = 'Erro';
         setTimeout(() => {
             limparVisor();
