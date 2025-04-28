@@ -31,9 +31,9 @@ class GerenciadorAnotacoes {
     }
 
     configurarEventos() {
-        this.formAdicionar.addEventListener('submit', (e) => {
+        this.formAdicionar.addEventListener('submit', (e) => { 
             e.preventDefault();
-            this.criarAnotacao();
+            this.criarAnotacao(); 
         });
 
         this.btnVoltar.addEventListener('click', () => {
@@ -93,12 +93,13 @@ class GerenciadorAnotacoes {
         this.telaEdicao.style.display = 'block';
     }
 
+    //salvar e voltar para a tela principal
     salvarVoltar() {
         if (this.anotacaoAtual) {
             this.anotacaoAtual.conteudo = this.textoAnotacao.value;
             this.salvarLocalStorage();
-            this.telaEdicao.style.display = 'none';
-            this.telaPrincipal.style.display = 'block';
+            this.telaEdicao.style.display = 'none'; 
+            this.telaPrincipal.style.display = 'block'; 
             this.renderizarLista();
         }
     }
@@ -132,7 +133,7 @@ class GerenciadorAnotacoes {
         this.anotacoes = this.anotacoes.filter(a => a.id !== id);
         this.salvarLocalStorage();
         this.renderizarLista();
-        
+        // Se a anotação excluída for a atual, voltar para a tela principal
         if (this.anotacaoAtual && this.anotacaoAtual.id === id) {
             this.telaEdicao.style.display = 'none';
             this.telaPrincipal.style.display = 'block';
@@ -149,7 +150,8 @@ class GerenciadorAnotacoes {
     }
 
     renderizarLista() {
-        if (this.anotacoes.length === 0) {
+        //se nenhuma anotação for encontrada mostra mensagem
+        if (this.anotacoes.length === 0) { 
             this.listaAnotacoes.innerHTML = `
                 <div class="text-center py-5">
                     <p class="text-muted">Nenhuma anotação encontrada</p>
@@ -158,7 +160,6 @@ class GerenciadorAnotacoes {
             `;
             return;
         }
-
         this.listaAnotacoes.innerHTML = this.anotacoes.map(anotacao => `
             <li>
                 <span>${anotacao.titulo}</span>
