@@ -1,46 +1,21 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cronômetro Simples</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
+  <meta charset="UTF-8">
+  <title>Cronômetro Simples</title>
+  <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <div class="container-principal">
-        <div class="cronometro-container">
-            <div class="display-tempo">
-                <span id="horas">00</span>
-                <span class="separador">:</span>
-                <span id="minutos">00</span>
-                <span class="separador">:</span>
-                <span id="segundos">00</span>
-            </div>
-            
-            <div class="controles">
-                <button class="btn-controle" id="btn-iniciar">
-                    Iniciar
-                </button>
-                <button class="btn-controle" id="btn-zerar">
-                    Zerar
-                </button>
-                <button class="btn-controle" id="btn-registrar">
-                    Registrar
-                </button>
-                <button class="btn-controle" id="btn-limpar">
-                    Limpar
-                </button>
-            </div>
-        </div>
+  <h1 id="tempo">00:00:00</h1>
+  <div class="botoes">
+    <button onclick="iniciar()">Iniciar</button>
+    <button onclick="parar()">Parar</button>
+    <button onclick="zerar()">Zerar</button>
+    <button onclick="registrar()">Registrar</button>
+    <button onclick="limpar()">Limpar</button>
+  </div>
+  <ul id="registros"></ul>
 
-        <div class="registro-container">
-            <h2 class="titulo-registro">Registros</h2>
-            <ul class="lista-registro" id="lista-registro"></ul>
-        </div>
-    </div>
-
-    <script src="js/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/index.js"></script>
 </body>
 </html>

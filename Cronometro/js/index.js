@@ -1,109 +1,46 @@
-class Cronometro {
-    constructor() {
-        this.segundos = 0;
-        this.minutos = 0;
-        this.horas = 0;
-        this.intervalo = null;
-        this.rodando = false;
+let inicio = 0, acumulado = 0, rodando = false, id = null;
 
-        // Elementos do display
-        this.horasElement = document.getElementById('horas');
-        this.minutosElement = document.getElementById('minutos');
-        this.segundosElement = document.getElementById('segundos');
-        
-        // Elementos de registro
-        this.listaRegistro = document.getElementById('lista-registro');
-        
-        // Botões
-        this.btnIniciar = document.getElementById('btn-iniciar');
-        this.btnZerar = document.getElementById('btn-zerar');
-        this.btnRegistrar = document.getElementById('btn-registrar');
-        this.btnLimpar = document.getElementById('btn-limpar');
-
-        this.configurarEventos();
-        this.atualizarDisplay();
-    }
-
-    configurarEventos() {
-        this.btnIniciar.addEventListener('click', () => this.iniciarOuParar());
-        this.btnZerar.addEventListener('click', () => this.zerar());
-        this.btnRegistrar.addEventListener('click', () => this.registrarTempo());
-        this.btnLimpar.addEventListener('click', () => this.limparRegistros());
-    }
-
-    iniciar() {
-        if (!this.rodando) {
-            this.intervalo = setInterval(() => {
-                this.segundos++;
-                //verifica se ja passou 60 que vira 1 minuto ou 60 minutos que vira 1 hora
-                if (this.segundos === 60) {
-                    this.segundos = 0;
-                    this.minutos++;
-                }
-                if (this.minutos === 60) {
-                    this.minutos = 0;
-                    this.horas++;
-                }
-                this.atualizarDisplay();
-            }, 1000);
-            this.rodando = true;
-            this.btnIniciar.textContent = 'Parar';
-        }
-    }
-
-    parar() {
-        if (this.rodando) {
-            clearInterval(this.intervalo);
-            this.rodando = false;
-            this.btnIniciar.textContent = 'Iniciar';
-        }
-    }
-
-    iniciarOuParar() {
-        if (this.rodando) {
-            this.parar();
-        } else {
-            this.iniciar();
-        }
-    }
-
-    zerar() {
-        this.parar();
-        this.segundos = 0;
-        this.minutos = 0;
-        this.horas = 0;
-        this.atualizarDisplay();
-    }
-
-    registrarTempo() {
-        // Verifica se o cronômetro está rodando
-        if (!this.rodando && this.segundos === 0 && this.minutos === 0 && this.horas === 0) {
-            return; 
-        }
-        
-        const tempoFormatado = `${this.formatarTempo(this.horas)}:${this.formatarTempo(this.minutos)}:${this.formatarTempo(this.segundos)}`;
-        const itemRegistro = document.createElement('li'); // Cria um novo elemento de lista
-        itemRegistro.textContent = tempoFormatado; 
-        this.listaRegistro.prepend(itemRegistro);
-    }
-
-    limparRegistros() {
-        this.listaRegistro.innerHTML = '';
-    }
-
-    
-    formatarTempo(tempo) {
-        return tempo < 10 ? `0${tempo}` : tempo;
-    }
-
-    atualizarDisplay() {
-        this.horasElement.textContent = this.formatarTempo(this.horas);
-        this.minutosElement.textContent = this.formatarTempo(this.minutos);
-        this.segundosElement.textContent = this.formatarTempo(this.segundos);
-    }
+function formatar(ms) {
+  let s = Math.floor(ms / 1000);
+  let h = String(Math.floor(s / 3600)).padStart(2, '0');
+  let m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+  s = String(s % 60).padStart(2, '0');
+  return `${h}:${m}:${s}`;
 }
 
-// Iniciar o cronômetro quando a página carregar
-document.addEventListener('DOMContentLoaded', () => {
-    new Cronometro();
-});
+function atualizar() {
+  document.getElementById('tempo').textContent = formatar(Date.now() - inicio + acumulado);
+  if (rodando) id = setTimeout(atualizar, 1000);
+}
+
+function iniciar() {
+  if (!rodando) {
+    inicio = Date.now();
+    rodando = true;
+    atualizar();
+  }
+}
+
+function parar() {
+  if (rodando) {
+    clearTimeout(id);
+    acumulado += Date.now() - inicio;
+    rodando = false;
+  }
+}
+
+function zerar() {
+  parar();
+  acumulado = 0;
+  document.getElementById('tempo').textContent = '00:00:00';
+}
+
+function registrar() {
+  const li = document.createElement('li');
+  li.textContent = document.getElementById('tempo').textContent;
+  document.getElementById('registros').prepend(li); 
+}
+
+function limpar() {
+  document.getElementById('registros').innerHTML = '';
+}
